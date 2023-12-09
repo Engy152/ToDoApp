@@ -1,25 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/modules/AddTaskScreen.dart';
-import 'package:to_do_app/modules/homePage.dart';
-import 'package:to_do_app/modules/onBordingScreen/onBoardingScreen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:to_do_app/cubit/cubit.dart';
+import 'package:to_do_app/model/TasksModel.dart';
 import 'package:to_do_app/modules/splash_screen.dart';
+import 'package:to_do_app/shared/bloc_obsercer.dart';
+import 'package:to_do_app/shared/constance.dart';
 
-void main() {
+void main() async{
+  Bloc.observer = MyBlocObserver();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox(taskBox);
+  Hive.registerAdapter(TasksModelAdapter());
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-       // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        //useMaterial3: true,
+    return BlocProvider(
+      create: (BuildContext context) => TasksCubit()..getTask(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark(
+
+        ),
+        home: SplashScreen(),
       ),
-      home: SplashScreen(),
     );
   }
 }

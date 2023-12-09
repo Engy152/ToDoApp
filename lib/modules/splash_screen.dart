@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/modules/onBordingScreen/onBoardingScreen.dart';
 
 class SplashScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final mediaQueryh = MediaQuery.of(context).size.height;
     final mediaQueryw = MediaQuery.of(context).size.width;
     return Scaffold(
       body: AnimatedSplashScreen(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.black26,
         duration: 3000,
         splashTransition: SplashTransition.rotationTransition,
         splash:
@@ -34,22 +33,11 @@ class SplashScreen extends StatelessWidget {
               style: TextStyle(
                   fontSize: 25.0,
                   fontWeight: FontWeight.bold,
-                color: Colors.white
+
               ),
             ),
           ],
         ),
-
-        // Expanded(
-        //   child: Text(
-        //     'Chef App',
-        //     style: TextStyle(
-        //       fontSize: 40,
-        //       color: Colors.black,
-        //     ),
-        //   ),
-        // ),
-
         nextScreen: onBoardingScreen() ,
       ),
     );

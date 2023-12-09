@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+const taskBox = 'task box';
 Color colorButtom = const Color(0xFF8875FF);
 Color colotDate = const Color(0xFF242969);
 Color colorTextField = const Color(0xff979797);

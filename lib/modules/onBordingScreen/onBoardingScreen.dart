@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:to_do_app/model/onBoardingModel.dart';
+import 'package:to_do_app/modules/TasksScreen/TasksScreen.dart';
 import 'package:to_do_app/modules/homePage.dart';
 import 'package:to_do_app/modules/onBordingScreen/widgetOnBoading.dart';
 import 'package:to_do_app/shared/constance.dart';
@@ -35,14 +36,12 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
         elevation: 0.0,
         title: TextButton(
           onPressed: ()
           {
-            navigateAndFinish(context, HomePage());
+            navigateAndFinish(context, TasksScreen());
           },
           child: Text(
             'Skip',
@@ -60,6 +59,7 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
           children: [
             Expanded(
               child: PageView.builder(
+
                 onPageChanged: (index)
                 {
                   if(index == onBoarding.length - 1)
@@ -123,7 +123,7 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
                   {
                     if(isLastScreen)
                     {
-                      navigateAndFinish(context, HomePage());
+                      navigateAndFinish(context, TasksScreen());
                     }else
                     {
                       obBoardingController.nextPage(
@@ -132,7 +132,7 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
                     }
 
                   },
-                  width: 100.0,
+                  width: 100.0, color_buttom: colorButtom,
                 ),
               ],
             )
